@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نادي الذكاء الاصطناعي - جامعة الملك عبدالعزيز</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --vivid-purple: #3A0CA3;
+            --vivid-blue: #4361EE;
+            --vivid-azure: #4CC9F0;
+            --pastel-gray-green: #C5E0B4;
+            --bg-angle: 135deg;
+        }
+        
+        html {
+            font-family: "IBM Plex Sans Arabic", system-ui, -apple-system, "Segoe UI",
+                         "Noto Naskh Arabic UI", "Noto Sans Arabic", "Tahoma", Arial, sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        
+        body {
+            background: linear-gradient(var(--bg-angle), var(--vivid-purple), var(--vivid-blue), var(--vivid-azure));
+            background-size: 200% 200%;
+            animation: gradientDrift 10s ease-in-out infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        @keyframes gradientDrift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            body {
+                animation: none;
+                background-position: 0% 50%;
+            }
+        }
+        
+        .banner-container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            z-index: 1;
+        }
+        
+        /* club logo */
+        .club-logo {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 30px;
+        }
+        
+        .logo-inner {
+            width: 250px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+        }
+        
+        .logo-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+        
+        /* Main content */
+        .main-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 1200px;
+            width: 100%;
+        }
+        
+        .main-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 50px;
+            line-height: 1.8;
+            font-weight: 400;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Philosophy Section */
+        .philosophy-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 0 0 60px 0;
+            z-index: 10;
+            position: relative;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .philosophy-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .philosophy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .philosophy-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(197, 224, 180, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .philosophy-card:hover::before {
+            left: 100%;
+        }
+        
+        .philosophy-title-ar {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+        
+        .philosophy-title-en {
+            font-size: 1rem;
+            color: rgba(197, 224, 180, 0.8);
+            margin-bottom: 20px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .philosophy-description {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        /* Innovation showcase */
+        .innovation-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+            z-index: 10;
+            position: relative;
+        }
+        
+        .innovation-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .innovation-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(197, 224, 180, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .innovation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .innovation-card:hover::before {
+            left: 100%;
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .card-description {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* Action buttons */
+        .action-section {
+            margin-top: 50px;
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Enhanced Focus Styles */
+        *:focus-visible {
+            outline: 2px solid var(--pastel-gray-green);
+            outline-offset: 2px;
+        }
+        
+        /* Enhanced Button Styles */
+        .action-btn {
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .secondary-btn {
+            background: rgba(197, 224, 180, 0.25);
+            border: 1px solid var(--pastel-gray-green);
+            color: white;
+        }
+        
+        .secondary-btn:hover {
+            background: var(--pastel-gray-green);
+            color: var(--vivid-purple);
+            border-color: var(--pastel-gray-green);
+        }
+        
+        /* Footer info */
+        .footer-info {
+            margin-top: 60px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .logo-inner {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .philosophy-section {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .philosophy-title-ar {
+                font-size: 1.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .innovation-section {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .action-section {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner-container">
+        <!-- University logo -->
+        <div class="club-logo">
+            <div class="logo-container">
+                <div class="logo-rays"></div>
+                <div class="logo-circle">
+                    <div class="logo-inner">
+                        <img src="ai_club_logo.png" alt="شعار النادي">
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main content -->
+        <div class="main-content">
+            <h1 class="main-title">نادي الذكاء الاصطناعي</h1>
+            <p class="subtitle">
+                كلية الحاسبات وتقنية المعلومات - جامعة الملك عبدالعزيز - فرع رابغ<br>
+                مساحة للتعلم والإبداع والابتكار في عالم الذكاء الاصطناعي
+            </p>
+            
+            <!-- Philosophy cards -->
+            <div class="philosophy-section">
+                <div class="philosophy-card">
+                    <h3 class="philosophy-title-ar">نتعلم</h3>
+                    <p class="philosophy-title-en">We Learn</p>
+                    <p class="philosophy-description">كل عضو يبدأ رحلته بالتعلم. نوفر البيئة والأدوات والبرامج التدريبية لبناء أساس معرفي قوي في الذكاء الاصطناعي وتطبيقاته.</p>
+                </div>
+                
+                <div class="philosophy-card">
+                    <h3 class="philosophy-title-ar">نبتكر</h3>
+                    <p class="philosophy-title-en">We Innovate</p>
+                    <p class="philosophy-description">نحوّل المعرفة إلى أفكار إبداعية. من خلال التعاون والتفكير النقدي، نطور حلولاً مبتكرة للتحديات الواقعية.</p>
+                </div>
+                
+                <div class="philosophy-card">
+                    <h3 class="philosophy-title-ar">ننجز</h3>
+                    <p class="philosophy-title-en">We Achieve</p>
+                    <p class="philosophy-description">نحوّل الأفكار إلى واقع ملموس. مشاريع حقيقية، شهادات معتمدة، وإسهامات فعلية في التحول الرقمي الوطني.</p>
+                </div>
+            </div>
+            
+            <!-- Innovation cards
+            <div class="innovation-section">
+                <div class="innovation-card">
+                    <div class="card-title">التعلم العميق</div>
+                    <div class="card-description">ورش عمل تفاعلية لاستكشاف خوارزميات التعلم الآلي والشبكات العصبية</div>
+                </div>
+                
+                <div class="innovation-card">
+                    <div class="card-title">مشاريع مبتكرة</div>
+                    <div class="card-description">تطوير تطبيقات ذكية وحلول تقنية متقدمة للمجتمع</div>
+                </div>
+                
+                <div class="innovation-card">
+                    <div class="card-title">قادة المستقبل</div>
+                    <div class="card-description">إعداد جيل من المبدعين في مجال التكنولوجيا والذكاء الاصطناعي</div>
+                </div>
+            </div> -->
+            
+            <!-- Action buttons -->
+            <div class="action-section">
+                <a class="action-btn" href="join.html">انضم إلينا الآن</a>
+                <a class="action-btn secondary-btn" href="info.html">معلومات إضافية</a>
+            </div>
+            
+            <!-- Footer -->
+            <div class="footer-info">
+                معاً نبني مستقبلاً ذكياً ومبتكراً | جامعة الملك عبدالعزيز
+            </div>
+        </div>
+    </div>
+</body>
+</html>

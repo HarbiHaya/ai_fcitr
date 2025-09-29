@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>انضمام اللجان — نادي الذكاء الاصطناعي</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+
+    :root{
+      --vivid-purple:#3A0CA3;
+      --vivid-blue:#4361EE;
+      --vivid-azure:#4CC9F0;
+      --pastel-gray-green:#C5E0B4;
+      --bg-angle:135deg;
+    }
+
+    html {
+      font-family: "IBM Plex Sans Arabic", system-ui, -apple-system, "Segoe UI",
+                   "Noto Naskh Arabic UI", "Noto Sans Arabic", "Tahoma", Arial, sans-serif;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box;font-family:inherit}
+    body{
+      background: linear-gradient(var(--bg-angle), var(--vivid-purple), var(--vivid-blue), var(--vivid-azure));
+      background-size: 200% 200%;
+      animation: gradientDrift 10s ease-in-out infinite;
+      min-height:100vh; color:#fff; overflow-x:hidden;
+      position: relative;
+    }
+
+    @keyframes gradientDrift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body {
+        animation: none;
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Enhanced Focus Styles */
+    *:focus-visible {
+      outline: 2px solid var(--pastel-gray-green);
+      outline-offset: 2px;
+    }
+
+    .page{
+      position:relative; min-height:100vh; padding:40px 20px;
+      display:flex; flex-direction:column; align-items:center; gap:18px;
+      z-index: 1;
+    }
+
+    /* club logo */
+    .club-logo {
+      position: relative;
+      z-index: 10;
+      margin-bottom: 30px;
+    }
+    
+    .logo-inner {
+      width: 250px;
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+    }
+    
+    .logo-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    header{position:relative; z-index:2; text-align:center; margin-bottom: 30px;}
+    .title{
+      font-size:2.6rem; font-weight:900; margin-bottom:8px;
+      color: white;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    }
+    .subtitle{color: rgba(255, 255, 255, 0.95); font-size:1.08rem; line-height:1.8; max-width:900px; margin:0 auto 40px; text-shadow:0 2px 10px rgba(0,0,0,.2)}
+
+    /* Section Title */
+    .section-title {
+      position: relative;
+      z-index: 2;
+      font-size: 2rem;
+      font-weight: 800;
+      color: white;
+      text-align: center;
+      margin: 20px 0 30px;
+    }
+
+    /* Membership Benefits */
+    .benefits-section {
+      position: relative;
+      z-index: 2;
+      margin: 0 auto 50px;
+      max-width: 1200px;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+
+    .benefit-card {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 20px;
+      padding: 30px 25px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(197, 224, 180, 0.4);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .benefit-card h3 {
+      font-size: 1.1rem;
+      color: white;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .benefit-card p {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .additional-benefits {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: rgba(197, 224, 180, 0.2);
+      border: 1px solid rgba(197, 224, 180, 0.3);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .badge:hover {
+      background: rgba(197, 224, 180, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* Grid with more green accents */
+    .grid{
+      position:relative; z-index:2; margin:26px auto 0; width:100%; max-width:1200px;
+      display:grid; gap:22px; align-items:stretch;
+      grid-template-columns: repeat(5, minmax(0,1fr));
+    }
+    @media (max-width:1200px){ .grid{grid-template-columns: repeat(3, minmax(0,1fr));} }
+    @media (max-width:820px){  .grid{grid-template-columns: repeat(2, minmax(0,1fr));} }
+    @media (max-width:560px){  .grid{grid-template-columns: 1fr;} }
+
+    .card{
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius:20px; padding:22px; backdrop-filter: blur(20px);
+      position:relative; overflow:hidden;
+      display:flex; flex-direction:column; height: 100%;
+      min-height: 260px;
+      transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+    .card::before{
+      content:''; position:absolute; inset:0; left:-100%;
+      background:linear-gradient(90deg,transparent,rgba(255, 255, 255,.1),transparent);
+      transition:left .5s ease;
+    }
+    .card:hover{
+      transform:translateY(-8px) scale(1.015); 
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow:0 18px 40px rgba(0, 0, 0,.2);
+      border-color: rgba(197, 224, 180, 0.5);
+    }
+    .card:hover::before{left:100%}
+
+    .card h3{font-size:1.2rem; margin-bottom:6px; color: white;}
+    .card p{color: rgba(255, 255, 255, 0.85); line-height:1.7; font-size:.98rem; margin-bottom:14px}
+
+    .card-body{display:flex; flex-direction:column; gap:8px; flex:1}
+    .card .btn{margin-top:auto; align-self:flex-start}
+
+    .btn{
+      background: rgba(255, 255, 255, 0.25);
+      color:#fff; border: 1px solid rgba(255, 255, 255, 0.3); padding:12px 22px; border-radius:40px; font-weight:700; cursor:pointer;
+      backdrop-filter: blur(10px); transition:transform .2s ease, background .2s ease, box-shadow .2s ease; text-decoration:none; display:inline-block
+    }
+    .btn:hover{
+      background: rgba(255, 255, 255, 0.35);
+      transform:translateY(-3px); 
+      box-shadow:0 14px 36px rgba(0, 0, 0,.2)
+    }
+
+    .cta-bar{position:relative; z-index:2; margin:10px auto 0; display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+    .btn--outline{
+      background: rgba(197, 224, 180, 0.25); 
+      border: 1px solid rgba(197, 224, 180, 0.4); 
+      color: white;
+    }
+    .btn--outline:hover{
+      background: rgba(197, 224, 180, 0.35);
+    }
+
+    footer{position:relative; z-index:2; color: rgba(255, 255, 255, 0.8); font-size:.9rem; text-align:center; margin-top:20px}
+
+    @media (max-width: 768px) {
+      .logo-inner {
+        width: 180px;
+        height: 180px;
+      }
+      .title {
+        font-size: 2rem;
+      }
+      .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      .section-title {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- Logo -->
+    <div class="club-logo">
+      <div class="logo-container">
+        <div class="logo-inner">
+          <img src="ai_club_logo.png" alt="شعار النادي"> 
+        </div>
+      </div>
+    </div>
+
+    <header>
+      <h1 class="title">انضم إلى لجان نادي الذكاء الاصطناعي</h1>
+      <p class="subtitle">اختر اللجنة التي تناسب اهتماماتك ومهاراتك، وابدأ التأثير معنا.</p>
+    </header>
+
+
+    <h2 class="section-title">اللجان المتاحة</h2>
+
+    <section class="grid">
+      <!-- لجنة الإعلام -->
+      <article class="card">
+        <div class="card-body">
+          <h3>لجنة الإعلام</h3>
+          <p>تصميم الهوية البصرية، إدارة الحسابات، إنتاج الفيديو والموشن، وتصوير الأنشطة لإبراز أثر النادي.</p>
+        </div>
+        <a class="btn join-btn" href="#" data-committee="media">انضم الآن</a>
+      </article>
+
+      <!-- لجنة التدريب والبرامج -->
+      <article class="card">
+        <div class="card-body">
+          <h3>لجنة التدريب والبرامج</h3>
+          <p>تخطيط وتنفيذ ورش ودورات، التنسيق مع المدربين، وبناء مسارات تعليمية عملية للطلاب.</p>
+        </div>
+        <a class="btn join-btn" href="#" data-committee="training">انضم الآن</a>
+      </article>
+
+      <!-- لجنة المحتوى -->
+      <article class="card">
+        <div class="card-body">
+          <h3>لجنة المحتوى</h3>
+          <p>كتابة وتحرير المحتوى التقني، إعداد ملخصات ومراجع، وصناعة منشورات تثقيفية مبسطة.</p>
+        </div>
+        <a class="btn join-btn" href="#" data-committee="content">انضم الآن</a>
+      </article>
+
+      <!-- لجنة العلاقات والشراكات -->
+      <article class="card">
+        <div class="card-body">
+          <h3>لجنة العلاقات والشراكات</h3>
+          <p>بناء شراكات مع جهات داخل الجامعة وخارجها، رعاية الفعاليات، وفرص تعاون تخدم طلاب النادي.</p>
+        </div>
+        <a class="btn join-btn" href="#" data-committee="relations">انضم الآن</a>
+      </article>
+
+      <!-- لجنة البحث والابتكار -->
+      <article class="card">
+        <div class="card-body">
+          <h3>لجنة البحث والابتكار</h3>
+          <p>مشاريع بحثية وتجريبية، ورش قراءة أوراق علمية، ومبادرات ابتكار ومسابقات.</p>
+        </div>
+        <a class="btn join-btn" href="#" data-committee="research">انضم الآن</a>
+      </article>
+    </section>
+    <!-- Membership Benefits -->
+    <section class="benefits-section">
+      <h2 class="section-title">مميزات العضوية</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <h3>شهادات معتمدة من الجامعة</h3>
+          <p>احصل على شهادات رسمية معتمدة للبرامج المكتملة</p>
+        </div>
+        <div class="benefit-card">
+          <h3>مشاريع تثري سيرتك الذاتية</h3>
+          <p>شارك في مشاريع تعزز من ملفك المهني</p>
+        </div>
+        <div class="benefit-card">
+          <h3>أولوية للمشاركة في الفعاليات والمؤتمرات</h3>
+          <p>احصل على أولوية التسجيل في الفعاليات وورش العمل والمؤتمرات</p>
+        </div>
+      </div>
+      <div class="additional-benefits">
+        <span class="badge">نحتفي بجميع التخصصات</span>
+        <span class="badge">نرحب بالعقول المشوقة</span>
+        <span class="badge">لجميع المستويات</span>
+      </div>
+    </section>
+
+
+
+    <div class="cta-bar">
+      <a class="btn btn--outline" href="index.html">العودة للصفحة الرئيسية</a>
+      <a class="btn btn--outline" href="info.html">معلومات إضافية</a>
+    </div>
+
+    <footer> معاً نبني مستقبلاً ذكياً ومبتكراً | جامعة الملك عبدالعزيز </footer>
+  </div>
+
+  <script>
+    // Google Form link - replace with your actual form URL
+    const GOOGLE_FORM_URL = 'https://forms.gle/YOUR-FORM-ID-HERE';
+    
+    // Add click handlers to all join buttons
+    document.querySelectorAll('.join-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const committee = this.getAttribute('data-committee');
+        // Redirect to Google Form with committee parameter
+        window.open(`${GOOGLE_FORM_URL}?committee=${committee}`, '_blank');
+      });
+    });
+  </script>
+</body>
+</html>
