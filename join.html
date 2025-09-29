@@ -77,7 +77,7 @@
       border-radius: 50%;
     }
 
-    header{position:relative; z-index:2; text-align:center; margin-bottom: 30px;}
+    header{position:relative; z-index:2; text-align:center; margin-bottom: 20px;}
     .title{
       font-size:2.6rem; font-weight:900; margin-bottom:8px;
       color: white;
@@ -98,11 +98,11 @@
 
     /* Membership Benefits */
     .benefits-section {
-      position: relative;
-      z-index: 2;
-      margin: 0 auto 50px;
-      max-width: 1200px;
-    }
+    position: relative;
+    z-index: 2;
+    margin: 30px auto 50px;
+    max-width: 1200px;
+  }
 
     .benefits-grid {
       display: grid;
@@ -166,13 +166,12 @@
 
     /* Grid with more green accents */
     .grid{
-      position:relative; z-index:2; margin:26px auto 0; width:100%; max-width:1200px;
-      display:grid; gap:22px; align-items:stretch;
-      grid-template-columns: repeat(5, minmax(0,1fr));
+    position:relative; z-index:2; margin:26px auto 0; width:100%; max-width:1200px;
+    display:grid; gap:22px; align-items:stretch;
+    grid-template-columns: repeat(5, minmax(0,1fr));
     }
     @media (max-width:1200px){ .grid{grid-template-columns: repeat(3, minmax(0,1fr));} }
-    @media (max-width:820px){  .grid{grid-template-columns: repeat(2, minmax(0,1fr));} }
-    @media (max-width:560px){  .grid{grid-template-columns: 1fr;} }
+    @media (max-width:820px){  .grid{grid-template-columns: 1fr;} }
 
     .card{
       background: rgba(255, 255, 255, 0.15);
@@ -234,9 +233,18 @@
         font-size: 2rem;
       }
       .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .benefits-grid {
         grid-template-columns: 1fr;
         gap: 15px;
       }
+    }
       .section-title {
         font-size: 1.6rem;
       }

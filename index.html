@@ -125,6 +125,11 @@
             margin-left: auto;
             margin-right: auto;
         }
+        @media (max-width: 768px) {
+        .philosophy-section {
+            grid-template-columns: 1fr;
+        }
+        }
         
         .philosophy-card {
             background: rgba(255, 255, 255, 0.12);
@@ -184,7 +189,7 @@
         /* Innovation showcase */
         .innovation-section {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));;
             gap: 30px;
             margin: 50px 0;
             z-index: 10;
