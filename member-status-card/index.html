@@ -2,17 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <title>AI Club Committee Member Card</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-
-        :root {
-            --node-size: 12px;
-            --node-size-active: 16px;
-            --node-label-gap: 24px;
-        }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -24,27 +17,29 @@
             min-height: 100vh;
             background: #0a0e27;
             font-family: 'Space Grotesk', sans-serif;
-            padding: 20px;
+            padding: clamp(8px, 2vw, 20px);
+            overflow-x: hidden;
         }
 
+        /* ============ SEARCH (Responsive) ============ */
         .search-container {
-            margin-bottom: 30px;
+            margin-bottom: clamp(15px, 3vh, 30px);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
-            max-width: 500px;
+            gap: clamp(10px, 2vh, 15px);
             width: 100%;
+            max-width: min(500px, 95vw);
         }
 
         .search-input {
             width: 100%;
-            padding: 16px 24px;
+            padding: clamp(10px, 2.5vw, 16px) clamp(16px, 4vw, 24px);
             background: linear-gradient(135deg, #1a1f3a 0%, #2d1b69 100%);
             color: #ffffff;
             border: 2px solid #4361EE;
-            border-radius: 12px;
-            font-size: 16px;
+            border-radius: clamp(8px, 2vw, 12px);
+            font-size: clamp(13px, 2.8vw, 16px);
             font-weight: 500;
             font-family: 'Plus Jakarta Sans','IBM Plex Sans Arabic', sans-serif;
             text-align: center;
@@ -65,9 +60,9 @@
             background: #4CC9F0;
             color: #0b1130;
             border: none;
-            padding: 14px 40px;
-            border-radius: 12px;
-            font-size: 16px;
+            padding: clamp(10px, 2.2vw, 14px) clamp(26px, 6vw, 40px);
+            border-radius: clamp(8px, 2vw, 12px);
+            font-size: clamp(13px, 2.8vw, 16px);
             font-weight: 700;
             font-family: 'Plus Jakarta Sans','IBM Plex Sans Arabic', sans-serif;
             cursor: pointer;
@@ -82,17 +77,18 @@
 
         .search-error {
             color: #ff6b6b;
-            font-size: 14px;
+            font-size: clamp(12px, 2.5vw, 14px);
             font-weight: 600;
             min-height: 20px;
             text-align: center;
             font-family: 'Plus Jakarta Sans','IBM Plex Sans Arabic', sans-serif;
         }
 
-        .card-wrapper{
+        /* ============ CARD WRAPPER (Perfect Scaling) ============ */
+        .card-wrapper {
             position: relative;
             width: 100%;
-            max-width: 900px;
+            max-width: min(900px, 96vw);
             aspect-ratio: 9 / 5;
             margin: 0 auto;
         }
@@ -101,9 +97,8 @@
             width: 100%;
             height: 100%;
             background: #1a1f3a;
-            border-radius: 20px;
-            padding: 0;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border-radius: clamp(12px, 2.5vw, 20px);
+            box-shadow: 0 clamp(10px, 3vw, 20px) clamp(30px, 8vw, 60px) rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
             display: flex;
@@ -112,6 +107,7 @@
 
         .card.locked { filter: blur(8px); pointer-events: none; }
 
+        /* ============ IDLE OVERLAY ============ */
         .idle-overlay {
             position: absolute;
             inset: 0;
@@ -124,7 +120,7 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.5s ease;
-            border-radius: 20px;
+            border-radius: inherit;
         }
 
         .idle-overlay.active { opacity: 1; pointer-events: all; }
@@ -132,23 +128,27 @@
         .idle-content {
             text-align: center;
             color: #ffffff;
-            padding: 40px;
+            padding: clamp(20px, 5vw, 40px);
             font-family: 'Plus Jakarta Sans','IBM Plex Sans Arabic', sans-serif;
         }
 
         .idle-content h2 {
-            font-size: 32px;
+            font-size: clamp(20px, 5vw, 32px);
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: clamp(8px, 2vh, 12px);
             color: #4CC9F0;
-            font-family: 'Plus Jakarta Sans','IBM Plex Sans Arabic', sans-serif;
         }
 
-        .idle-content p { font-size: 16px; color: #b8c5d6; font-family: 'Plus Jakarta Sans','IBM Plex Sans Arabic', sans-serif; }
+        .idle-content p { 
+            font-size: clamp(12px, 3vw, 16px); 
+            color: #b8c5d6; 
+            line-height: 1.5;
+        }
 
+        /* ============ LEFT SECTION (Scales with container) ============ */
         .left-section {
             width: 55%;
-            padding: 35px 40px;
+            padding: clamp(14px, 3.5vw, 35px) clamp(18px, 4vw, 40px);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -157,67 +157,160 @@
             background: linear-gradient(135deg, #2d1b69 0%, #1a1f3a 100%);
         }
 
+        /* Logo & Header */
         .logo-header {
             display: flex;
             align-items: flex-start;
-            gap: 0.01px;
-            margin-bottom: 20px;
+            gap: clamp(2px, 0.5vw, 5px);
+            margin-bottom: clamp(8px, 2vh, 20px);
         }
 
-        .logo { width: 60px; height: 60px; flex-shrink: 0; margin-left: -5px; }
-        .logo img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 10px rgba(91, 141, 238, 0.4)); }
+        .logo { 
+            width: clamp(30px, 6vw, 60px); 
+            height: clamp(30px, 6vw, 60px); 
+            flex-shrink: 0; 
+        }
 
-        .club-name { display: flex; flex-direction: column; gap: 2px; justify-content: flex-start; margin-top: 20px; }
+        .logo img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; 
+            filter: drop-shadow(0 0 10px rgba(91, 141, 238, 0.4)); 
+        }
+
+        .club-name { 
+            display: flex; 
+            flex-direction: column; 
+            gap: clamp(1px, 0.3vh, 3px); 
+            justify-content: flex-start; 
+            margin-top: clamp(8px, 2vw, 20px); 
+        }
 
         .club-name-arabic {
-            color: #ffffff; font-size: 15px; font-weight: 600;
-            font-family: 'IBM Plex Sans Arabic', sans-serif; direction: rtl; line-height: 1.3;
+            color: #ffffff; 
+            font-size: clamp(9px, 2vw, 15px); 
+            font-weight: 600;
+            font-family: 'IBM Plex Sans Arabic', sans-serif; 
+            direction: rtl; 
+            line-height: 1.3;
         }
 
         .club-name-english {
-            color: #ffffff; font-size: 14px; font-weight: 500;
-            font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.5; text-transform: uppercase; letter-spacing: 0.5px;
+            color: #ffffff; 
+            font-size: clamp(7.5px, 1.8vw, 14px); 
+            font-weight: 500;
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            line-height: 1.5; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px;
         }
 
-        .member-info { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        /* Member Info */
+        .member-info { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+        }
 
         .committee-badge {
-            display: inline-block; padding: 8px 16px; background: rgba(91, 141, 238, 0.2);
-            border: 1px solid rgba(91, 141, 238, 0.4); border-radius: 20px; color: #bdd0f7;
-            font-size: 13px; font-weight: 600; margin-bottom: 10px; width: fit-content; text-transform: uppercase; letter-spacing: 1px;
+            display: inline-block; 
+            padding: clamp(4px, 1vw, 8px) clamp(10px, 2vw, 16px); 
+            background: rgba(91, 141, 238, 0.2);
+            border: 1px solid rgba(91, 141, 238, 0.4); 
+            border-radius: clamp(12px, 3vw, 20px); 
+            color: #bdd0f7;
+            font-size: clamp(8px, 1.8vw, 13px); 
+            font-weight: 600; 
+            margin-bottom: clamp(4px, 1vh, 10px); 
+            width: fit-content; 
+            text-transform: uppercase; 
+            letter-spacing: clamp(0.5px, 0.2vw, 1px);
         }
 
-        .member-name { font-size: 30px; font-weight: 700; color: #ffffff; margin-bottom: 12px; line-height: 1.2; }
+        .member-name { 
+            font-size: clamp(16px, 4vw, 30px); 
+            font-weight: 700; 
+            color: #ffffff; 
+            margin-bottom: clamp(6px, 1.5vh, 12px); 
+            line-height: 1.2; 
+        }
 
-        .member-id { font-size: 18px; color: #82adb8; font-weight: 600; font-family: 'Courier New', monospace; margin-bottom: 5px; }
+        .member-id { 
+            font-size: clamp(12px, 2.5vw, 18px); 
+            color: #82adb8; 
+            font-weight: 600; 
+            font-family: 'Courier New', monospace; 
+            margin-bottom: clamp(3px, 0.8vh, 5px); 
+        }
 
-        .role-description { color: #b8c5d6; font-size: 15px; line-height: 1.6; margin-bottom: 25px; }
+        .role-description { 
+            color: #b8c5d6; 
+            font-size: clamp(10px, 2vw, 15px); 
+            line-height: 1.6; 
+            margin-bottom: clamp(10px, 2.5vh, 25px); 
+        }
 
-        .status-indicator { display: flex; align-items: center; gap: 8px; color: #4CC9F0; font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+        .status-indicator { 
+            display: flex; 
+            align-items: center; 
+            gap: clamp(5px, 1vw, 8px); 
+            color: #4CC9F0; 
+            font-size: clamp(10px, 2vw, 14px); 
+            font-weight: 600; 
+            margin-bottom: clamp(4px, 1vh, 8px); 
+        }
 
         .status-dot {
-            width: 8px; height: 8px; background: #4CC9F0; border-radius: 50%;
+            width: clamp(5px, 1vw, 8px); 
+            height: clamp(5px, 1vw, 8px); 
+            background: #4CC9F0; 
+            border-radius: 50%;
             animation: connectingPulse 1.5s ease-in-out infinite;
             box-shadow: 0 0 0 0 rgba(76, 201, 240, 0.7);
         }
 
         @keyframes connectingPulse {
             0%   { transform: scale(1);   box-shadow: 0 0 0 0 rgba(76,201,240,0.7); }
-            50%  { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(76,201,240,0); }
+            50%  { transform: scale(1.1); box-shadow: 0 0 0 clamp(6px, 1.5vw, 10px) rgba(76,201,240,0); }
             100% { transform: scale(1);   box-shadow: 0 0 0 0 rgba(76,201,240,0); }
         }
 
-        .phase-description { color: #8a94a8; font-size: 13px; font-style: italic; line-height: 1.5; margin-top: 0; margin-left: 16px; }
-
-        .footer-text {
-            color: #6b7a94; font-size: 16px; font-family: 'IBM Plex Sans Arabic', sans-serif;
-            font-weight: 600; direction: ltr; text-align: left; display: flex; align-items: center;
-            justify-content: space-between; width: 100%;
+        .phase-description { 
+            color: #8a94a8; 
+            font-size: clamp(8px, 1.8vw, 13px); 
+            font-style: italic; 
+            line-height: 1.5; 
+            margin-left: clamp(10px, 2vw, 16px); 
         }
 
-        .linkedin-icon { height: 20px; margin-bottom: 2px; width: auto; opacity: 0.6; }
-        .slogan-text { direction: rtl; color: aliceblue; opacity: 0.6; }
+        /* Footer */
+        .footer-text {
+            color: #6b7a94; 
+            font-size: clamp(10px, 2.2vw, 16px); 
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            font-weight: 600; 
+            direction: ltr; 
+            text-align: left; 
+            display: flex; 
+            align-items: center;
+            justify-content: space-between; 
+            width: 100%;
+        }
 
+        .linkedin-icon { 
+            height: clamp(12px, 2.5vw, 20px); 
+            width: auto; 
+            opacity: 0.6; 
+        }
+
+        .slogan-text { 
+            direction: rtl; 
+            color: aliceblue; 
+            opacity: 0.6; 
+        }
+
+        /* ============ RIGHT SECTION (Neural Network) ============ */
         .right-section {
             width: 45%;
             position: relative;
@@ -229,61 +322,125 @@
         }
 
         .visual-container {
-            position: relative; width: 100%; height: 100%;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 30px 20px;
+            position: relative; 
+            width: 100%; 
+            height: 100%;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center;
+            padding: clamp(12px, 3vw, 30px) clamp(8px, 2vw, 20px);
         }
 
         .structure-title {
-            color: #6b7a94; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; margin-bottom: 25px;
+            color: #6b7a94; 
+            font-size: clamp(6px, 1.5vw, 11px); 
+            text-transform: uppercase; 
+            letter-spacing: clamp(1px, 0.3vw, 2px); 
+            font-weight: 600; 
+            margin-bottom: clamp(12px, 3vh, 25px);
         }
 
         .neural-network {
-            display: flex; flex-direction: column; gap: 28px; align-items: center; position: relative; width: 100%;
+            display: flex; 
+            flex-direction: column; 
+            gap: clamp(10px, 2.5vh, 28px); 
+            align-items: center; 
+            position: relative; 
+            width: 100%;
         }
 
         .network-layer {
-            display: flex; gap: 15px; align-items: center; justify-content: center; position: relative;
-            min-height: max(var(--node-size-active), 18px); width: 100%;
+            display: flex; 
+            gap: clamp(8px, 2vw, 15px); 
+            align-items: center; 
+            justify-content: center; 
+            position: relative;
+            min-height: clamp(10px, 2vh, 18px); 
+            width: 100%;
         }
 
         .layer-label {
-            position: absolute; left: 0; color: #6b7a94; font-size: 10px; font-weight: 600; white-space: nowrap;
-            text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.3s ease; pointer-events: none;
+            position: absolute; 
+            left: 0; 
+            color: #6b7a94; 
+            font-size: clamp(5px, 1.3vw, 10px); 
+            font-weight: 600; 
+            white-space: nowrap;
+            text-transform: uppercase; 
+            letter-spacing: clamp(0.3px, 0.1vw, 0.5px); 
+            transition: all 0.3s ease; 
+            pointer-events: none;
         }
 
         .network-layer.active .layer-label { color: #5B8DEE; }
 
+        /* Neurons with fluid sizing */
         .neuron {
-            width: var(--node-size); height: var(--node-size); border-radius: 50%;
-            background: rgba(255,255,255,0.4); box-shadow: 0 0 8px rgba(255,255,255,0.3);
-            position: relative; z-index: 10; transition: all 0.3s ease;
+            width: clamp(6px, 1.5vw, 12px); 
+            height: clamp(6px, 1.5vw, 12px); 
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4); 
+            box-shadow: 0 0 8px rgba(255,255,255,0.3);
+            position: relative; 
+            z-index: 10; 
+            transition: all 0.3s ease;
         }
 
         .neuron.active {
-            width: var(--node-size-active); height: var(--node-size-active);
+            width: clamp(9px, 2vw, 16px); 
+            height: clamp(9px, 2vw, 16px);
             background: #5B8DEE;
-            box-shadow: 0 0 20px rgba(91,141,238,0.9), 0 0 35px rgba(91,141,238,0.5);
+            box-shadow: 0 0 clamp(12px, 3vw, 20px) rgba(91,141,238,0.9), 
+                        0 0 clamp(20px, 5vw, 35px) rgba(91,141,238,0.5);
             animation: neuronPulse 2s ease-in-out infinite;
         }
 
         @keyframes neuronPulse {
-            0%,100% { box-shadow: 0 0 20px rgba(91,141,238,0.9), 0 0 35px rgba(91,141,238,0.5); transform: scale(1); }
-            50%     { box-shadow: 0 0 30px rgba(91,141,238,1),    0 0 50px rgba(91,141,238,0.7); transform: scale(1.2); }
+            0%,100% { 
+                box-shadow: 0 0 clamp(12px, 3vw, 20px) rgba(91,141,238,0.9), 
+                           0 0 clamp(20px, 5vw, 35px) rgba(91,141,238,0.5); 
+                transform: scale(1); 
+            }
+            50% { 
+                box-shadow: 0 0 clamp(18px, 4vw, 30px) rgba(91,141,238,1), 
+                           0 0 clamp(30px, 7vw, 50px) rgba(91,141,238,0.7); 
+                transform: scale(1.2); 
+            }
         }
 
+        /* Connection Lines */
         .network-svg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 5;
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            pointer-events: none; 
+            z-index: 5;
         }
 
-        .connection-line { stroke: rgba(91,141,238,0.12); stroke-width: 0.8; fill: none; transition: all 0.3s ease; }
-        .connection-line.active { stroke: rgba(91,141,238,0.5); stroke-width: 1.5; }
+        .connection-line { 
+            stroke: rgba(91,141,238,0.12); 
+            stroke-width: clamp(0.5, 0.15vw, 0.8); 
+            fill: none; 
+            transition: all 0.3s ease; 
+        }
 
+        .connection-line.active { 
+            stroke: rgba(91,141,238,0.5); 
+            stroke-width: clamp(0.8, 0.2vw, 1.5); 
+        }
+
+        /* Background Decoration */
         .bg-decoration {
-            position: absolute; width: 300px; height: 300px;
+            position: absolute; 
+            width: clamp(150px, 40vw, 300px); 
+            height: clamp(150px, 40vw, 300px);
             background: radial-gradient(circle, rgba(91,141,238,0.1) 0%, transparent 70%);
-            border-radius: 50%; top: 50%; left: 50%;
+            border-radius: 50%; 
+            top: 50%; 
+            left: 50%;
             transform: translate(-50%, -50%);
             animation: rotate 20s linear infinite;
         }
@@ -293,106 +450,18 @@
             to   { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
-        /* ENHANCED MOBILE OPTIMIZATION */
-        @media (max-width: 768px) {
-            body { padding: 10px; }
-            
-            .search-container { max-width: 95%; margin-bottom: 15px; gap: 12px; }
-            .search-input { font-size: 14px; padding: 12px 18px; }
-            .reveal-button { font-size: 14px; padding: 11px 30px; }
-            
-            .card { border-radius: 16px; }
-            .left-section { padding: 20px 25px; }
-            
-            .logo { width: 45px; height: 45px; }
-            .club-name { margin-top: 14px; gap: 1px; }
-            .club-name-arabic { font-size: 12px; line-height: 1.2; }
-            .club-name-english { font-size: 10px; }
-            
-            .logo-header { margin-bottom: 12px; }
-            .committee-badge { font-size: 10px; padding: 5px 12px; margin-bottom: 6px; }
-            .member-name { font-size: 22px; margin-bottom: 8px; }
-            .member-id { font-size: 14px; margin-bottom: 4px; }
-            .role-description { font-size: 12px; line-height: 1.5; margin-bottom: 15px; }
-            .status-indicator { font-size: 11px; gap: 6px; margin-bottom: 5px; }
-            .status-dot { width: 6px; height: 6px; }
-            .phase-description { font-size: 10px; margin-left: 12px; }
-            
-            .footer-text { font-size: 12px; }
-            .linkedin-icon { height: 14px; }
-            
-            .visual-container { padding: 15px 10px; }
-            .structure-title { font-size: 8px; margin-bottom: 15px; letter-spacing: 1px; }
-            .neural-network { gap: 18px; }
-            .network-layer { gap: 10px; }
-            .layer-label { font-size: 7px; letter-spacing: 0.3px; }
-            
-            :root {
-                --node-size: 8px;
-                --node-size-active: 11px;
-                --node-label-gap: 14px;
-            }
-            
-            .idle-content { padding: 25px; }
-            .idle-content h2 { font-size: 20px; margin-bottom: 8px; }
-            .idle-content p { font-size: 13px; }
-        }
-
-        @media (max-width: 480px) {
-            body { padding: 8px; }
-            
-            .search-input { font-size: 13px; padding: 10px 16px; }
-            .reveal-button { font-size: 13px; padding: 10px 26px; }
-            
-            .card { border-radius: 14px; }
-            .left-section { padding: 16px 20px; }
-            
-            .logo { width: 38px; height: 38px; }
-            .club-name-arabic { font-size: 10.5px; }
-            .club-name-english { font-size: 9px; }
-            
-            .committee-badge { font-size: 9px; padding: 4px 10px; }
-            .member-name { font-size: 19px; }
-            .member-id { font-size: 13px; }
-            .role-description { font-size: 11px; margin-bottom: 12px; }
-            .status-indicator { font-size: 10px; }
-            .phase-description { font-size: 9px; }
-            
-            .footer-text { font-size: 11px; }
-            .linkedin-icon { height: 12px; }
-            
-            .structure-title { font-size: 7px; margin-bottom: 12px; }
-            .neural-network { gap: 14px; }
-            .layer-label { font-size: 6px; }
-            
-            :root {
-                --node-size: 7px;
-                --node-size-active: 10px;
-                --node-label-gap: 12px;
-            }
-        }
-
+        /* ============ ONLY LAYOUT FIXES FOR EXTREME CASES ============ */
         @media (max-width: 360px) {
-            .left-section { padding: 14px 18px; }
-            
-            .logo { width: 34px; height: 34px; }
-            .club-name { margin-top: 10px; }
-            .club-name-arabic { font-size: 9.5px; }
-            .club-name-english { font-size: 8px; }
-            
-            .member-name { font-size: 17px; }
-            .member-id { font-size: 12px; }
-            .role-description { font-size: 10px; }
-            
-            .footer-text { font-size: 10px; }
-            
-            .neural-network { gap: 12px; }
-            
-            :root {
-                --node-size: 6px;
-                --node-size-active: 9px;
-                --node-label-gap: 10px;
+            .club-name-arabic { 
+                font-size: 8.5px; 
+                letter-spacing: -0.2px;
             }
+        }
+
+        @media (max-height: 600px) and (orientation: landscape) {
+            body { padding: 5px; }
+            .search-container { margin-bottom: 10px; }
+            .card-wrapper { max-width: 85vh; }
         }
     </style>
 </head>
@@ -552,8 +621,8 @@
         }
 
         function positionLabels() {
-            const GAP = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--node-label-gap')) || 24;
-
+            const baseGap = Math.max(10, Math.min(24, window.innerWidth * 0.03));
+            
             document.querySelectorAll('.network-layer').forEach((layer) => {
                 const neurons = Array.from(layer.querySelectorAll('.neuron'));
                 const label = layer.querySelector('.layer-label');
@@ -565,7 +634,7 @@
                     return rect.right > max.right ? rect : max;
                 }, neurons[0].getBoundingClientRect());
 
-                const left = rightmostRect.right - layerRect.left + GAP;
+                const left = rightmostRect.right - layerRect.left + baseGap;
                 label.style.left = `${left}px`;
             });
         }
