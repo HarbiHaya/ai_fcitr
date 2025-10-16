@@ -508,46 +508,48 @@
         }
 
         /* ============ MOBILE RESPONSIVENESS ============ */
-@media screen and (max-width: 768px) {
-    .card-wrapper {
-        width: 100%;
-        height: auto;
-        max-width: 400px;
-    }
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 5px;
+                overflow-x: hidden;
+            }
 
-    .card {
-        flex-direction: column;
-        height: auto;
-        min-height: 700px;
-    }
+            .card-wrapper {
+                width: 100%;
+                height: auto;
+                transform: scale(0.55);
+                transform-origin: top center;
+                margin-top: -150px;
+                margin-bottom: -180px;
+            }
 
-    .left-section {
-        width: 100%;
-        padding: 25px 20px;
-    }
+            .search-container {
+                max-width: 90%;
+                margin-bottom: 10px;
+            }
 
-    .right-section {
-        width: 100%;
-        height: 300px;
-    }
+            .search-input, .reveal-button {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
 
-    .member-name {
-        font-size: 24px;
-    }
+            .idle-content h2 {
+                font-size: 24px;
+            }
 
-    .neural-network {
-        transform: scale(0.8);
-    }
+            .idle-content p {
+                font-size: 14px;
+            }
+        }
 
-    .logo {
-        width: 45px;
-        height: 45px;
-    }
-
-    .search-input, .reveal-button {
-        font-size: 14px;
-    }
-}
+        /* For very small phones */
+        @media screen and (max-width: 380px) {
+            .card-wrapper {
+                transform: scale(0.45);
+                margin-top: -180px;
+                margin-bottom: -220px;
+            }
+        }
     </style>
 </head>
 <body>
