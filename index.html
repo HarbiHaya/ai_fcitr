@@ -343,7 +343,7 @@
 </head>
 <body>
     <div class="banner-container">
-        <!-- University logo -->
+        <!-- club logo -->
         <div class="club-logo">
             <div class="logo-container">
                 <div class="logo-rays"></div>
@@ -384,24 +384,6 @@
                 </div>
             </div>
             
-            <!-- Innovation cards
-            <div class="innovation-section">
-                <div class="innovation-card">
-                    <div class="card-title">التعلم العميق</div>
-                    <div class="card-description">ورش عمل تفاعلية لاستكشاف خوارزميات التعلم الآلي والشبكات العصبية</div>
-                </div>
-                
-                <div class="innovation-card">
-                    <div class="card-title">مشاريع مبتكرة</div>
-                    <div class="card-description">تطوير تطبيقات ذكية وحلول تقنية متقدمة للمجتمع</div>
-                </div>
-                
-                <div class="innovation-card">
-                    <div class="card-title">قادة المستقبل</div>
-                    <div class="card-description">إعداد جيل من المبدعين في مجال التكنولوجيا والذكاء الاصطناعي</div>
-                </div>
-            </div>
-             -->
             <!-- Action buttons -->
             <div class="action-section">
                 <a class="action-btn" href="join.html">انضم إلينا الآن</a>
@@ -414,5 +396,133 @@
             </div>
         </div>
     </div>
+
+    <!-- Sliding WhatsApp Bar (TOP VERSION, responsive) -->
+<style>
+    .whats-slide {
+      position: fixed;
+      top: -120px; /* hidden initially */
+      inset-inline: 0;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      z-index: 9999;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: top 0.5s ease;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+      font-family: "IBM Plex Sans Arabic", system-ui, -apple-system ;
+      flex-wrap: wrap;
+    }
+    .whats-slide--show {
+      top: 0;
+    }
+  
+    .whats-slide__icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: inline-grid;
+      place-items: center;
+      background: #25D366;
+      color: #0b3d2b;
+      font-weight: 900;
+      flex: 0 0 34px;
+    }
+  
+    .whats-slide__text {
+      flex: 1;
+      font-size: 1.3rem;
+      line-height: 1.6;
+    }
+  
+    .whats-slide__cta {
+      background: #25D366;
+      color: #0b3d2b;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+      transition: transform 0.2s ease, filter 0.2s ease;
+      white-space: nowrap;
+    }
+    .whats-slide__cta:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+  
+    .whats-slide__close {
+      background: transparent;
+      color: #fff;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      padding: 4px 8px;
+      opacity: 0.8;
+      transition: opacity 0.2s ease;
+    }
+    .whats-slide__close:hover {
+      opacity: 1;
+    }
+  
+    @media (max-width: 700px) {
+      .whats-slide {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: start;
+        gap: 10px;
+        padding: 14px;
+      }
+      .whats-slide__cta {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  
+    @media (prefers-reduced-motion: reduce) {
+      .whats-slide {
+        transition: none;
+      }
+    }
+  </style>
+  
+  <div class="whats-slide" dir="rtl">
+    <button class="whats-slide__close" type="button" aria-label="إغلاق الشريط">×</button>
+    <div class="whats-slide__text">
+      تابع قناتنا على واتساب للاطلاع على آخر الأخبار والفعاليات!
+    </div>
+    <a
+      class="whats-slide__cta"
+      href="https://whatsapp.com/channel/0029Vb6hwH689ineR8nscq0a"
+      rel="noopener"
+    >
+      تواصل عبر واتساب
+    </a>
+  </div>
+  
+  <script>
+    (function () {
+      const BAR_KEY = 'whatsSlideTopDismissed_v1';
+      const bar = document.querySelector('.whats-slide');
+      const closeBtn = bar.querySelector('.whats-slide__close');
+  
+      if (!localStorage.getItem(BAR_KEY)) {
+        setTimeout(() => bar.classList.add('whats-slide--show'), 1000);
+      }
+  
+      closeBtn.addEventListener('click', () => {
+        bar.classList.remove('whats-slide--show');
+        localStorage.setItem(BAR_KEY, '1');
+      });
+    })();
+  </script>
+  
 </body>
 </html>
