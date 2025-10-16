@@ -2,12 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>AI Club Committee Member Card</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
 
         body {
             display: flex;
@@ -17,29 +23,28 @@
             min-height: 100vh;
             background: #0a0e27;
             font-family: 'Space Grotesk', sans-serif;
-            padding: clamp(8px, 2vw, 20px);
-            overflow-x: hidden;
+            padding: 2vh 2vw;
         }
 
-        /* ============ SEARCH (Responsive) ============ */
+        /* ============ SEARCH ============ */
         .search-container {
-            margin-bottom: clamp(15px, 3vh, 30px);
+            margin-bottom: 3vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: clamp(10px, 2vh, 15px);
-            width: 100%;
-            max-width: min(500px, 95vw);
+            gap: 1.5vh;
+            width: 90%;
+            max-width: 500px;
         }
 
         .search-input {
             width: 100%;
-            padding: clamp(10px, 2.5vw, 16px) clamp(16px, 4vw, 24px);
+            padding: 2vh 4vw;
             background: linear-gradient(135deg, #1a1f3a 0%, #2d1b69 100%);
             color: #ffffff;
             border: 2px solid #4361EE;
-            border-radius: clamp(8px, 2vw, 12px);
-            font-size: clamp(13px, 2.8vw, 16px);
+            border-radius: 12px;
+            font-size: 16px;
             font-weight: 500;
             font-family: 'Plus Jakarta Sans','IBM Plex Sans Arabic', sans-serif;
             text-align: center;
@@ -60,9 +65,9 @@
             background: #4CC9F0;
             color: #0b1130;
             border: none;
-            padding: clamp(10px, 2.2vw, 14px) clamp(26px, 6vw, 40px);
-            border-radius: clamp(8px, 2vw, 12px);
-            font-size: clamp(13px, 2.8vw, 16px);
+            padding: 2vh 6vw;
+            border-radius: 12px;
+            font-size: 16px;
             font-weight: 700;
             font-family: 'Plus Jakarta Sans','IBM Plex Sans Arabic', sans-serif;
             cursor: pointer;
@@ -77,18 +82,19 @@
 
         .search-error {
             color: #ff6b6b;
-            font-size: clamp(12px, 2.5vw, 14px);
+            font-size: 14px;
             font-weight: 600;
             min-height: 20px;
             text-align: center;
             font-family: 'Plus Jakarta Sans','IBM Plex Sans Arabic', sans-serif;
         }
 
-        /* ============ CARD WRAPPER (Perfect Scaling) ============ */
+        /* ============ CARD - CONTAINER-QUERY BASED ============ */
         .card-wrapper {
+            container-type: size;
             position: relative;
-            width: 100%;
-            max-width: min(900px, 96vw);
+            width: 90vw;
+            max-width: 900px;
             aspect-ratio: 9 / 5;
             margin: 0 auto;
         }
@@ -97,8 +103,8 @@
             width: 100%;
             height: 100%;
             background: #1a1f3a;
-            border-radius: clamp(12px, 2.5vw, 20px);
-            box-shadow: 0 clamp(10px, 3vw, 20px) clamp(30px, 8vw, 60px) rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
             display: flex;
@@ -120,7 +126,7 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.5s ease;
-            border-radius: inherit;
+            border-radius: 20px;
         }
 
         .idle-overlay.active { opacity: 1; pointer-events: all; }
@@ -128,27 +134,27 @@
         .idle-content {
             text-align: center;
             color: #ffffff;
-            padding: clamp(20px, 5vw, 40px);
+            padding: 5cqw;
             font-family: 'Plus Jakarta Sans','IBM Plex Sans Arabic', sans-serif;
         }
 
         .idle-content h2 {
-            font-size: clamp(20px, 5vw, 32px);
+            font-size: 5cqw;
             font-weight: 700;
-            margin-bottom: clamp(8px, 2vh, 12px);
+            margin-bottom: 1.5cqh;
             color: #4CC9F0;
         }
 
         .idle-content p { 
-            font-size: clamp(12px, 3vw, 16px); 
+            font-size: 2.5cqw;
             color: #b8c5d6; 
             line-height: 1.5;
         }
 
-        /* ============ LEFT SECTION (Scales with container) ============ */
+        /* ============ LEFT SECTION - USES CONTAINER QUERY UNITS ============ */
         .left-section {
             width: 55%;
-            padding: clamp(14px, 3.5vw, 35px) clamp(18px, 4vw, 40px);
+            padding: 4cqh 4cqw;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -157,17 +163,16 @@
             background: linear-gradient(135deg, #2d1b69 0%, #1a1f3a 100%);
         }
 
-        /* Logo & Header */
         .logo-header {
             display: flex;
             align-items: flex-start;
-            gap: clamp(2px, 0.5vw, 5px);
-            margin-bottom: clamp(8px, 2vh, 20px);
+            gap: 1cqw;
+            margin-bottom: 2cqh;
         }
 
         .logo { 
-            width: clamp(30px, 6vw, 60px); 
-            height: clamp(30px, 6vw, 60px); 
+            width: 7cqw;
+            height: 7cqw;
             flex-shrink: 0; 
         }
 
@@ -181,14 +186,14 @@
         .club-name { 
             display: flex; 
             flex-direction: column; 
-            gap: clamp(1px, 0.3vh, 3px); 
+            gap: 0.5cqh;
             justify-content: flex-start; 
-            margin-top: clamp(8px, 2vw, 20px); 
+            margin-top: 2cqh;
         }
 
         .club-name-arabic {
             color: #ffffff; 
-            font-size: clamp(9px, 2vw, 15px); 
+            font-size: 1.8cqw;
             font-weight: 600;
             font-family: 'IBM Plex Sans Arabic', sans-serif; 
             direction: rtl; 
@@ -197,7 +202,7 @@
 
         .club-name-english {
             color: #ffffff; 
-            font-size: clamp(7.5px, 1.8vw, 14px); 
+            font-size: 1.5cqw;
             font-weight: 500;
             font-family: 'Plus Jakarta Sans', sans-serif; 
             line-height: 1.5; 
@@ -205,7 +210,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Member Info */
         .member-info { 
             flex: 1; 
             display: flex; 
@@ -215,55 +219,55 @@
 
         .committee-badge {
             display: inline-block; 
-            padding: clamp(4px, 1vw, 8px) clamp(10px, 2vw, 16px); 
+            padding: 1cqh 2cqw;
             background: rgba(91, 141, 238, 0.2);
             border: 1px solid rgba(91, 141, 238, 0.4); 
-            border-radius: clamp(12px, 3vw, 20px); 
+            border-radius: 20px;
             color: #bdd0f7;
-            font-size: clamp(8px, 1.8vw, 13px); 
+            font-size: 1.4cqw;
             font-weight: 600; 
-            margin-bottom: clamp(4px, 1vh, 10px); 
+            margin-bottom: 1cqh;
             width: fit-content; 
             text-transform: uppercase; 
-            letter-spacing: clamp(0.5px, 0.2vw, 1px);
+            letter-spacing: 1px;
         }
 
         .member-name { 
-            font-size: clamp(16px, 4vw, 30px); 
+            font-size: 3.3cqw;
             font-weight: 700; 
             color: #ffffff; 
-            margin-bottom: clamp(6px, 1.5vh, 12px); 
+            margin-bottom: 1.5cqh;
             line-height: 1.2; 
         }
 
         .member-id { 
-            font-size: clamp(12px, 2.5vw, 18px); 
+            font-size: 2cqw;
             color: #82adb8; 
             font-weight: 600; 
             font-family: 'Courier New', monospace; 
-            margin-bottom: clamp(3px, 0.8vh, 5px); 
+            margin-bottom: 0.5cqh;
         }
 
         .role-description { 
             color: #b8c5d6; 
-            font-size: clamp(10px, 2vw, 15px); 
+            font-size: 1.6cqw;
             line-height: 1.6; 
-            margin-bottom: clamp(10px, 2.5vh, 25px); 
+            margin-bottom: 3cqh;
         }
 
         .status-indicator { 
             display: flex; 
             align-items: center; 
-            gap: clamp(5px, 1vw, 8px); 
+            gap: 1cqw;
             color: #4CC9F0; 
-            font-size: clamp(10px, 2vw, 14px); 
+            font-size: 1.5cqw;
             font-weight: 600; 
-            margin-bottom: clamp(4px, 1vh, 8px); 
+            margin-bottom: 1cqh;
         }
 
         .status-dot {
-            width: clamp(5px, 1vw, 8px); 
-            height: clamp(5px, 1vw, 8px); 
+            width: 1cqw;
+            height: 1cqw;
             background: #4CC9F0; 
             border-radius: 50%;
             animation: connectingPulse 1.5s ease-in-out infinite;
@@ -272,22 +276,21 @@
 
         @keyframes connectingPulse {
             0%   { transform: scale(1);   box-shadow: 0 0 0 0 rgba(76,201,240,0.7); }
-            50%  { transform: scale(1.1); box-shadow: 0 0 0 clamp(6px, 1.5vw, 10px) rgba(76,201,240,0); }
+            50%  { transform: scale(1.1); box-shadow: 0 0 0 1cqw rgba(76,201,240,0); }
             100% { transform: scale(1);   box-shadow: 0 0 0 0 rgba(76,201,240,0); }
         }
 
         .phase-description { 
             color: #8a94a8; 
-            font-size: clamp(8px, 1.8vw, 13px); 
+            font-size: 1.4cqw;
             font-style: italic; 
             line-height: 1.5; 
-            margin-left: clamp(10px, 2vw, 16px); 
+            margin-left: 2cqw;
         }
 
-        /* Footer */
         .footer-text {
             color: #6b7a94; 
-            font-size: clamp(10px, 2.2vw, 16px); 
+            font-size: 1.7cqw;
             font-family: 'IBM Plex Sans Arabic', sans-serif;
             font-weight: 600; 
             direction: ltr; 
@@ -299,7 +302,7 @@
         }
 
         .linkedin-icon { 
-            height: clamp(12px, 2.5vw, 20px); 
+            height: 2.2cqw;
             width: auto; 
             opacity: 0.6; 
         }
@@ -310,7 +313,7 @@
             opacity: 0.6; 
         }
 
-        /* ============ RIGHT SECTION (Neural Network) ============ */
+        /* ============ RIGHT SECTION ============ */
         .right-section {
             width: 45%;
             position: relative;
@@ -329,22 +332,22 @@
             flex-direction: column; 
             align-items: center; 
             justify-content: center;
-            padding: clamp(12px, 3vw, 30px) clamp(8px, 2vw, 20px);
+            padding: 3cqh 2cqw;
         }
 
         .structure-title {
             color: #6b7a94; 
-            font-size: clamp(6px, 1.5vw, 11px); 
+            font-size: 1.2cqw;
             text-transform: uppercase; 
-            letter-spacing: clamp(1px, 0.3vw, 2px); 
+            letter-spacing: 2px;
             font-weight: 600; 
-            margin-bottom: clamp(12px, 3vh, 25px);
+            margin-bottom: 3cqh;
         }
 
         .neural-network {
             display: flex; 
             flex-direction: column; 
-            gap: clamp(10px, 2.5vh, 28px); 
+            gap: 3cqh;
             align-items: center; 
             position: relative; 
             width: 100%;
@@ -352,11 +355,11 @@
 
         .network-layer {
             display: flex; 
-            gap: clamp(8px, 2vw, 15px); 
+            gap: 2cqw;
             align-items: center; 
             justify-content: center; 
             position: relative;
-            min-height: clamp(10px, 2vh, 18px); 
+            min-height: 2cqh;
             width: 100%;
         }
 
@@ -364,21 +367,20 @@
             position: absolute; 
             left: 0; 
             color: #6b7a94; 
-            font-size: clamp(5px, 1.3vw, 10px); 
+            font-size: 1.1cqw;
             font-weight: 600; 
             white-space: nowrap;
             text-transform: uppercase; 
-            letter-spacing: clamp(0.3px, 0.1vw, 0.5px); 
+            letter-spacing: 0.5px;
             transition: all 0.3s ease; 
             pointer-events: none;
         }
 
         .network-layer.active .layer-label { color: #5B8DEE; }
 
-        /* Neurons with fluid sizing */
         .neuron {
-            width: clamp(6px, 1.5vw, 12px); 
-            height: clamp(6px, 1.5vw, 12px); 
+            width: 1.3cqw;
+            height: 1.3cqw;
             border-radius: 50%;
             background: rgba(255,255,255,0.4); 
             box-shadow: 0 0 8px rgba(255,255,255,0.3);
@@ -388,28 +390,27 @@
         }
 
         .neuron.active {
-            width: clamp(9px, 2vw, 16px); 
-            height: clamp(9px, 2vw, 16px);
+            width: 1.8cqw;
+            height: 1.8cqw;
             background: #5B8DEE;
-            box-shadow: 0 0 clamp(12px, 3vw, 20px) rgba(91,141,238,0.9), 
-                        0 0 clamp(20px, 5vw, 35px) rgba(91,141,238,0.5);
+            box-shadow: 0 0 2cqw rgba(91,141,238,0.9), 
+                        0 0 3.5cqw rgba(91,141,238,0.5);
             animation: neuronPulse 2s ease-in-out infinite;
         }
 
         @keyframes neuronPulse {
             0%,100% { 
-                box-shadow: 0 0 clamp(12px, 3vw, 20px) rgba(91,141,238,0.9), 
-                           0 0 clamp(20px, 5vw, 35px) rgba(91,141,238,0.5); 
+                box-shadow: 0 0 2cqw rgba(91,141,238,0.9), 
+                           0 0 3.5cqw rgba(91,141,238,0.5); 
                 transform: scale(1); 
             }
             50% { 
-                box-shadow: 0 0 clamp(18px, 4vw, 30px) rgba(91,141,238,1), 
-                           0 0 clamp(30px, 7vw, 50px) rgba(91,141,238,0.7); 
+                box-shadow: 0 0 3cqw rgba(91,141,238,1), 
+                           0 0 5cqw rgba(91,141,238,0.7); 
                 transform: scale(1.2); 
             }
         }
 
-        /* Connection Lines */
         .network-svg {
             position: absolute; 
             top: 0; 
@@ -422,21 +423,20 @@
 
         .connection-line { 
             stroke: rgba(91,141,238,0.12); 
-            stroke-width: clamp(0.5, 0.15vw, 0.8); 
+            stroke-width: 0.8; 
             fill: none; 
             transition: all 0.3s ease; 
         }
 
         .connection-line.active { 
             stroke: rgba(91,141,238,0.5); 
-            stroke-width: clamp(0.8, 0.2vw, 1.5); 
+            stroke-width: 1.5; 
         }
 
-        /* Background Decoration */
         .bg-decoration {
             position: absolute; 
-            width: clamp(150px, 40vw, 300px); 
-            height: clamp(150px, 40vw, 300px);
+            width: 40cqw;
+            height: 40cqw;
             background: radial-gradient(circle, rgba(91,141,238,0.1) 0%, transparent 70%);
             border-radius: 50%; 
             top: 50%; 
@@ -450,18 +450,44 @@
             to   { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
-        /* ============ ONLY LAYOUT FIXES FOR EXTREME CASES ============ */
-        @media (max-width: 360px) {
-            .club-name-arabic { 
-                font-size: 8.5px; 
-                letter-spacing: -0.2px;
+        /* ============ MOBILE ADJUSTMENTS ============ */
+        @media (max-width: 768px) {
+            .card-wrapper {
+                width: 95vw;
+            }
+            
+            .search-input, .reveal-button {
+                font-size: 14px;
             }
         }
 
+        @media (max-width: 480px) {
+            .card-wrapper {
+                width: 98vw;
+            }
+            
+            .search-input, .reveal-button {
+                font-size: 13px;
+                padding: 1.5vh 5vw;
+            }
+
+            .search-container {
+                width: 95%;
+            }
+        }
+
+        /* Landscape mode on mobile */
         @media (max-height: 600px) and (orientation: landscape) {
-            body { padding: 5px; }
-            .search-container { margin-bottom: 10px; }
-            .card-wrapper { max-width: 85vh; }
+            body { 
+                padding: 1vh 2vw; 
+            }
+            .search-container { 
+                margin-bottom: 1.5vh; 
+            }
+            .card-wrapper {
+                max-width: 80vh;
+                aspect-ratio: 9 / 5;
+            }
         }
     </style>
 </head>
@@ -621,7 +647,8 @@
         }
 
         function positionLabels() {
-            const baseGap = Math.max(10, Math.min(24, window.innerWidth * 0.03));
+            const cardWidth = document.querySelector('.card-wrapper').offsetWidth;
+            const baseGap = cardWidth * 0.03;
             
             document.querySelectorAll('.network-layer').forEach((layer) => {
                 const neurons = Array.from(layer.querySelectorAll('.neuron'));
@@ -761,12 +788,16 @@
 
             const wrapper = document.getElementById('cardWrapper');
             if ('ResizeObserver' in window) {
-                const ro = new ResizeObserver(() => layout());
+                const ro = new ResizeObserver(() => {
+                    requestAnimationFrame(layout);
+                });
                 ro.observe(wrapper);
             }
         });
 
-        window.addEventListener('resize', layout);
+        window.addEventListener('resize', () => {
+            requestAnimationFrame(layout);
+        });
     </script>
 </body>
 </html>
