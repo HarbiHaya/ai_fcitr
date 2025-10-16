@@ -95,12 +95,13 @@
         }
 
         /* ============ CARD CONTAINER ============ */
-        .card-wrapper {
+        .card-wrapper{
             position: relative;
-            /* fixed shape across devices: 900x500 -> 9:5 */
-            width: min(900px, 92vw);
-            aspect-ratio: 9 / 5;
-            height: auto;              /* height is driven by aspect-ratio */
+            width: 100vw;         /* Full device width */
+            max-width: 900px;     /* But never stretch larger than designed card */
+            aspect-ratio: 9 / 5;  /* Maintain card shape */
+            margin: 0 auto;       /* Center horizontally */
+            padding: env(safe-area-inset-bottom) 0; /* iPhone safe area fix */
         }
 
         .card {
