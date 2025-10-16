@@ -27,7 +27,6 @@
             padding: 20px;
         }
 
-        /* ============ SEARCH CONTAINER ============ */
         .search-container {
             margin-bottom: 30px;
             display: flex;
@@ -60,11 +59,7 @@
             box-shadow: 0 0 0 4px rgba(76, 201, 240, 0.2);
         }
 
-        .search-input::placeholder {
-            color: #82adb8;
-            text-transform: none;
-            letter-spacing: 0;
-        }
+        .search-input::placeholder { color: #82adb8; text-transform: none; letter-spacing: 0; }
 
         .reveal-button {
             background: #4CC9F0;
@@ -94,14 +89,12 @@
             font-family: 'Plus Jakarta Sans','IBM Plex Sans Arabic', sans-serif;
         }
 
-        /* ============ CARD CONTAINER ============ */
         .card-wrapper{
             position: relative;
-            width: 100vw;         /* Full device width */
-            max-width: 900px;     /* But never stretch larger than designed card */
-            aspect-ratio: 9 / 5;  /* Maintain card shape */
-            margin: 0 auto;       /* Center horizontally */
-            padding: env(safe-area-inset-bottom) 0; /* iPhone safe area fix */
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 9 / 5;
+            margin: 0 auto;
         }
 
         .card {
@@ -119,7 +112,6 @@
 
         .card.locked { filter: blur(8px); pointer-events: none; }
 
-        /* ============ IDLE OVERLAY ============ */
         .idle-overlay {
             position: absolute;
             inset: 0;
@@ -144,11 +136,6 @@
             font-family: 'Plus Jakarta Sans','IBM Plex Sans Arabic', sans-serif;
         }
 
-        @keyframes lockPulse {
-            0%,100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.7; }
-        }
-
         .idle-content h2 {
             font-size: 32px;
             font-weight: 700;
@@ -159,7 +146,6 @@
 
         .idle-content p { font-size: 16px; color: #b8c5d6; font-family: 'Plus Jakarta Sans','IBM Plex Sans Arabic', sans-serif; }
 
-        /* ============ LEFT SECTION ============ */
         .left-section {
             width: 55%;
             padding: 35px 40px;
@@ -171,7 +157,6 @@
             background: linear-gradient(135deg, #2d1b69 0%, #1a1f3a 100%);
         }
 
-        /* Logo Header */
         .logo-header {
             display: flex;
             align-items: flex-start;
@@ -194,7 +179,6 @@
             font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.5; text-transform: uppercase; letter-spacing: 0.5px;
         }
 
-        /* Member Information */
         .member-info { flex: 1; display: flex; flex-direction: column; justify-content: center; }
 
         .committee-badge {
@@ -225,7 +209,6 @@
 
         .phase-description { color: #8a94a8; font-size: 13px; font-style: italic; line-height: 1.5; margin-top: 0; margin-left: 16px; }
 
-        /* Footer */
         .footer-text {
             color: #6b7a94; font-size: 16px; font-family: 'IBM Plex Sans Arabic', sans-serif;
             font-weight: 600; direction: ltr; text-align: left; display: flex; align-items: center;
@@ -235,7 +218,6 @@
         .linkedin-icon { height: 20px; margin-bottom: 2px; width: auto; opacity: 0.6; }
         .slogan-text { direction: rtl; color: aliceblue; opacity: 0.6; }
 
-        /* ============ RIGHT SECTION ============ */
         .right-section {
             width: 45%;
             position: relative;
@@ -256,7 +238,6 @@
             color: #6b7a94; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; margin-bottom: 25px;
         }
 
-        /* Neural Network */
         .neural-network {
             display: flex; flex-direction: column; gap: 28px; align-items: center; position: relative; width: 100%;
         }
@@ -273,7 +254,6 @@
 
         .network-layer.active .layer-label { color: #5B8DEE; }
 
-        /* Neurons */
         .neuron {
             width: var(--node-size); height: var(--node-size); border-radius: 50%;
             background: rgba(255,255,255,0.4); box-shadow: 0 0 8px rgba(255,255,255,0.3);
@@ -292,7 +272,6 @@
             50%     { box-shadow: 0 0 30px rgba(91,141,238,1),    0 0 50px rgba(91,141,238,0.7); transform: scale(1.2); }
         }
 
-        /* Connection Lines */
         .network-svg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; z-index: 5;
@@ -301,7 +280,6 @@
         .connection-line { stroke: rgba(91,141,238,0.12); stroke-width: 0.8; fill: none; transition: all 0.3s ease; }
         .connection-line.active { stroke: rgba(91,141,238,0.5); stroke-width: 1.5; }
 
-        /* Background Decoration */
         .bg-decoration {
             position: absolute; width: 300px; height: 300px;
             background: radial-gradient(circle, rgba(91,141,238,0.1) 0%, transparent 70%);
@@ -315,43 +293,118 @@
             to   { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
-        /* ============ RESPONSIVE TWEAKS (no scaling hacks) ============ */
+        /* ENHANCED MOBILE OPTIMIZATION */
         @media (max-width: 768px) {
-            body { padding: 12px; }
-            .search-container { max-width: 94%; margin-bottom: 16px; }
-            .search-input, .reveal-button { font-size: 14px; padding: 12px 18px; }
-            .idle-content h2 { font-size: 24px; }
-            .idle-content p  { font-size: 14px; }
+            body { padding: 10px; }
+            
+            .search-container { max-width: 95%; margin-bottom: 15px; gap: 12px; }
+            .search-input { font-size: 14px; padding: 12px 18px; }
+            .reveal-button { font-size: 14px; padding: 11px 30px; }
+            
+            .card { border-radius: 16px; }
+            .left-section { padding: 20px 25px; }
+            
+            .logo { width: 45px; height: 45px; }
+            .club-name { margin-top: 14px; gap: 1px; }
+            .club-name-arabic { font-size: 12px; line-height: 1.2; }
+            .club-name-english { font-size: 10px; }
+            
+            .logo-header { margin-bottom: 12px; }
+            .committee-badge { font-size: 10px; padding: 5px 12px; margin-bottom: 6px; }
+            .member-name { font-size: 22px; margin-bottom: 8px; }
+            .member-id { font-size: 14px; margin-bottom: 4px; }
+            .role-description { font-size: 12px; line-height: 1.5; margin-bottom: 15px; }
+            .status-indicator { font-size: 11px; gap: 6px; margin-bottom: 5px; }
+            .status-dot { width: 6px; height: 6px; }
+            .phase-description { font-size: 10px; margin-left: 12px; }
+            
+            .footer-text { font-size: 12px; }
+            .linkedin-icon { height: 14px; }
+            
+            .visual-container { padding: 15px 10px; }
+            .structure-title { font-size: 8px; margin-bottom: 15px; letter-spacing: 1px; }
+            .neural-network { gap: 18px; }
+            .network-layer { gap: 10px; }
+            .layer-label { font-size: 7px; letter-spacing: 0.3px; }
+            
+            :root {
+                --node-size: 8px;
+                --node-size-active: 11px;
+                --node-label-gap: 14px;
+            }
+            
+            .idle-content { padding: 25px; }
+            .idle-content h2 { font-size: 20px; margin-bottom: 8px; }
+            .idle-content p { font-size: 13px; }
         }
 
-        @media (max-width: 420px) {
-            .search-input, .reveal-button { font-size: 13px; padding: 10px 16px; }
-            .club-name-english { font-size: 12px; }
-            .club-name-arabic  { font-size: 13px; }
-            .member-name       { font-size: 26px; }
-            .member-id         { font-size: 16px; }
-            .role-description  { font-size: 14px; }
+        @media (max-width: 480px) {
+            body { padding: 8px; }
+            
+            .search-input { font-size: 13px; padding: 10px 16px; }
+            .reveal-button { font-size: 13px; padding: 10px 26px; }
+            
+            .card { border-radius: 14px; }
+            .left-section { padding: 16px 20px; }
+            
+            .logo { width: 38px; height: 38px; }
+            .club-name-arabic { font-size: 10.5px; }
+            .club-name-english { font-size: 9px; }
+            
+            .committee-badge { font-size: 9px; padding: 4px 10px; }
+            .member-name { font-size: 19px; }
+            .member-id { font-size: 13px; }
+            .role-description { font-size: 11px; margin-bottom: 12px; }
+            .status-indicator { font-size: 10px; }
+            .phase-description { font-size: 9px; }
+            
+            .footer-text { font-size: 11px; }
+            .linkedin-icon { height: 12px; }
+            
+            .structure-title { font-size: 7px; margin-bottom: 12px; }
+            .neural-network { gap: 14px; }
+            .layer-label { font-size: 6px; }
+            
+            :root {
+                --node-size: 7px;
+                --node-size-active: 10px;
+                --node-label-gap: 12px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .left-section { padding: 14px 18px; }
+            
+            .logo { width: 34px; height: 34px; }
+            .club-name { margin-top: 10px; }
+            .club-name-arabic { font-size: 9.5px; }
+            .club-name-english { font-size: 8px; }
+            
+            .member-name { font-size: 17px; }
+            .member-id { font-size: 12px; }
+            .role-description { font-size: 10px; }
+            
+            .footer-text { font-size: 10px; }
+            
+            .neural-network { gap: 12px; }
+            
+            :root {
+                --node-size: 6px;
+                --node-size-active: 9px;
+                --node-label-gap: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Search Container -->
     <div class="search-container">
-        <input
-            type="text"
-            id="nodeSearchInput"
-            placeholder="Enter your Node ID:"
-            class="search-input"
-            maxlength="6"
-        />
+        <input type="text" id="nodeSearchInput" placeholder="Enter your Node ID:" class="search-input" maxlength="6" />
         <button id="revealBtn" class="reveal-button">Reveal Card</button>
         <div id="searchError" class="search-error"></div>
     </div>
 
-    <!-- Card Wrapper with Overlay -->
     <div class="card-wrapper" id="cardWrapper">
         <div class="card locked">
-            <!-- Left Section -->
             <div class="left-section">
                 <div>
                     <div class="logo-header">
@@ -385,41 +438,30 @@
                 </div>
             </div>
 
-            <!-- Right Section -->
             <div class="right-section">
                 <div class="bg-decoration"></div>
                 <div class="visual-container">
                     <div class="structure-title">Neural Network Hierarchy</div>
                     <div class="neural-network" id="neuralNetwork">
                         <svg class="network-svg" id="networkSvg"></svg>
-
-                        <!-- Executive Board (3 nodes) -->
                         <div class="network-layer" data-layer="0">
                             <div class="neuron"></div>
                             <div class="neuron"></div>
                             <div class="neuron"></div>
                             <span class="layer-label">Executive Board</span>
                         </div>
-
-                        <!-- Activities & Partnerships -->
                         <div class="network-layer" data-layer="1" data-committee="Activities & Partnerships">
                             <div class="neuron"></div>
                             <span class="layer-label">Activities & Partnerships</span>
                         </div>
-
-                        <!-- Development & Innovation -->
                         <div class="network-layer" data-layer="2" data-committee="Development & Innovation">
                             <div class="neuron"></div>
                             <span class="layer-label">Development & Innovation</span>
                         </div>
-
-                        <!-- Media Production -->
                         <div class="network-layer" data-layer="3" data-committee="Media Production">
                             <div class="neuron"></div>
                             <span class="layer-label">Media Production</span>
                         </div>
-
-                        <!-- Output Layer -->
                         <div class="network-layer" data-layer="4">
                             <div class="neuron"></div>
                             <span class="layer-label">Impact Layer</span>
@@ -429,7 +471,6 @@
             </div>
         </div>
 
-        <!-- Idle/Locked Overlay -->
         <div id="idleOverlay" class="idle-overlay active">
             <div class="idle-content">
                 <h2>Check Your Node Status</h2>
@@ -439,24 +480,20 @@
     </div>
 
     <script>
-        // ============ DATA ============
         let candidates = [];
         let members = [];
 
         const committeeInfo = {
             'Activities & Partnerships': {
-                description:
-                    'Organize events, build industry partnerships, and create networking opportunities that expand our community reach and impact.',
+                description: 'Organize events, build industry partnerships, and create networking opportunities that expand our community reach and impact.',
                 neuronLayer: 1,
             },
             'Development & Innovation': {
-                description:
-                    'Lead technical projects, develop AI solutions, deliver training programs, and explore emerging technologies through research.',
+                description: 'Lead technical projects, develop AI solutions, deliver training programs, and explore emerging technologies through research.',
                 neuronLayer: 2,
             },
             'Media Production': {
-                description:
-                    "Create visual content, design multimedia materials, and manage the club's digital storytelling across all channels.",
+                description: "Create visual content, design multimedia materials, and manage the club's digital storytelling across all channels.",
                 neuronLayer: 3,
             },
         };
@@ -478,12 +515,10 @@
                 layout();
             } catch (error) {
                 console.error('Error loading candidates:', error);
-                document.getElementById('searchError').textContent =
-                    'Error loading candidate data. Please refresh the page.';
+                document.getElementById('searchError').textContent = 'Error loading candidate data. Please refresh the page.';
             }
         }
 
-        // ============ DRAWING FUNCTIONS ============
         function drawConnections() {
             const svg = document.getElementById('networkSvg');
             svg.innerHTML = '';
@@ -517,8 +552,7 @@
         }
 
         function positionLabels() {
-            const GAP =
-                parseInt(getComputedStyle(document.documentElement).getPropertyValue('--node-label-gap')) || 24;
+            const GAP = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--node-label-gap')) || 24;
 
             document.querySelectorAll('.network-layer').forEach((layer) => {
                 const neurons = Array.from(layer.querySelectorAll('.neuron'));
@@ -542,32 +576,26 @@
             const allLines = document.querySelectorAll('.connection-line');
             const allLayers = document.querySelectorAll('.network-layer');
 
-            // Update card content
             document.getElementById('memberName').textContent = member.name;
             document.getElementById('memberId').textContent = `ID: ${member.id}`;
             document.getElementById('committeeBadge').textContent = member.committee;
             document.getElementById('roleDescription').textContent = member.description;
 
-            // Update phase status and description
             const phaseStatus = document.getElementById('phaseStatus');
             const phaseDescription = document.getElementById('phaseDescription');
 
             if (['Activities & Partnerships', 'Development & Innovation'].includes(member.committee)) {
                 phaseStatus.textContent = 'Interview Phase';
-                phaseDescription.textContent =
-                    'You are invited to participate in our interview process where we will discuss your interests, skills, and vision for contributing to the AI Club.';
+                phaseDescription.textContent = 'You are invited to participate in our interview process where we will discuss your interests, skills, and vision for contributing to the AI Club.';
             } else if (member.committee === 'Media Production') {
                 phaseStatus.textContent = 'Challenge Phase';
-                phaseDescription.textContent =
-                    'You are required to submit your creative work showcasing your skills within the specified deadline. Please check your email for detailed requirements.';
+                phaseDescription.textContent = 'You are required to submit your creative work showcasing your skills within the specified deadline. Please check your email for detailed requirements.';
             }
 
-            // Reset all states
             allNeurons.forEach((n) => n.classList.remove('active'));
             allLines.forEach((l) => l.classList.remove('active'));
             allLayers.forEach((l) => l.classList.remove('active'));
 
-            // Activate specific layer and neuron
             const layers = document.querySelectorAll('.network-layer');
             const targetLayer = layers[member.neuronLayer];
             const targetNeuron = targetLayer.querySelector('.neuron');
@@ -575,7 +603,6 @@
             targetLayer.classList.add('active');
             targetNeuron.classList.add('active');
 
-            // Activate connected lines
             activateConnections(member.neuronLayer, 0);
         }
 
@@ -627,7 +654,6 @@
             positionLabels();
         }
 
-        // ============ SEARCH & REVEAL LOGIC ============
         function searchAndReveal() {
             const input = document.getElementById('nodeSearchInput').value.trim().toUpperCase();
             const error = document.getElementById('searchError');
@@ -653,7 +679,6 @@
             card.classList.remove('locked');
         }
 
-        // ============ INITIALIZATION ============
         window.addEventListener('load', async () => {
             await loadCandidates();
 
@@ -665,7 +690,6 @@
                 if (e.key === 'Enter') searchAndReveal();
             });
 
-            // Redraw connections whenever the wrapper resizes (keeps shape perfect on all devices)
             const wrapper = document.getElementById('cardWrapper');
             if ('ResizeObserver' in window) {
                 const ro = new ResizeObserver(() => layout());
