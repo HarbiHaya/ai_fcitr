@@ -93,6 +93,12 @@
             margin: 0 auto;
         }
 
+        @media (max-width: 768px) {
+            .card-wrapper {
+                aspect-ratio: unset;
+            }
+        }
+
         .card {
             width: 100%;
             height: 100%;
@@ -319,72 +325,78 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            padding: 25px 0;
         }
 
         .visual-container {
-            position: relative; 
-            width: 100%; 
+            position: relative;
+            width: 100%;
             height: 100%;
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
-            padding: clamp(12px, 3vw, 30px) clamp(8px, 2vw, 20px);
+            padding: clamp(25px, 4vw, 40px) 0;
         }
 
         .structure-title {
-            color: #6b7a94; 
-            font-size: clamp(6px, 1.5vw, 11px); 
-            text-transform: uppercase; 
-            letter-spacing: clamp(1px, 0.3vw, 2px); 
-            font-weight: 600; 
-            margin-bottom: clamp(12px, 3vh, 25px);
+            color: #6b7a94;
+            font-size: clamp(6px, 1.5vw, 11px);
+            text-transform: uppercase;
+            letter-spacing: clamp(1px, 0.3vw, 2px);
+            font-weight: 600;
+            margin-bottom: clamp(20px, 4vh, 30px);
+            text-align: center;
+            width: 100%;
         }
 
         .neural-network {
-            display: flex; 
-            flex-direction: column; 
-            gap: clamp(10px, 2.5vh, 28px); 
-            align-items: center; 
-            position: relative; 
+            display: flex;
+            flex-direction: column;
+            gap: clamp(20px, 4.5vh, 38px);
+            align-items: flex-start;
+            position: relative;
             width: 100%;
+            margin: 0;
+            padding-left: 40px;
         }
 
         .network-layer {
-            display: flex; 
-            gap: clamp(8px, 2vw, 15px); 
-            align-items: center; 
-            justify-content: center; 
+            display: flex;
+            flex-direction: row;
+            gap: clamp(12px, 3vw, 20px);
+            align-items: center;
+            justify-content: flex-start;
             position: relative;
-            min-height: clamp(10px, 2vh, 18px); 
-            width: 100%;
+            min-height: clamp(10px, 2vh, 18px);
+            width: auto;
+            margin: 0;
+            padding: 0;
         }
-
         .layer-label {
-            position: absolute; 
-            left: 0; 
-            color: #6b7a94; 
-            font-size: clamp(5px, 1.3vw, 10px); 
-            font-weight: 600; 
+            position: absolute;
+            color: #6b7a94;
+            font-size: clamp(7px, 1.4vw, 11px);
+            font-weight: 600;
             white-space: nowrap;
-            text-transform: uppercase; 
-            letter-spacing: clamp(0.3px, 0.1vw, 0.5px); 
-            transition: all 0.3s ease; 
+            text-transform: uppercase;
+            letter-spacing: clamp(0.5px, 0.15vw, 1px);
+            transition: all 0.3s ease;
             pointer-events: none;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
-        .network-layer.active .layer-label { color: #5B8DEE; }
-
-        /* Neurons with fluid sizing */
         .neuron {
-            width: clamp(6px, 1.5vw, 12px); 
-            height: clamp(6px, 1.5vw, 12px); 
+            width: clamp(6px, 1.5vw, 12px);
+            height: clamp(6px, 1.5vw, 12px);
             border-radius: 50%;
-            background: rgba(255,255,255,0.4); 
+            background: rgba(255,255,255,0.4);
             box-shadow: 0 0 8px rgba(255,255,255,0.3);
-            position: relative; 
-            z-index: 10; 
+            position: relative;
+            z-index: 10;
             transition: all 0.3s ease;
+            flex-shrink: 0;
         }
 
         .neuron.active {
@@ -411,7 +423,7 @@
 
         /* Connection Lines */
         .network-svg {
-            position: absolute; 
+            position: absolute;
             top: 0; 
             left: 0; 
             width: 100%; 
@@ -420,16 +432,16 @@
             z-index: 5;
         }
 
-        .connection-line { 
-            stroke: rgba(91,141,238,0.12); 
-            stroke-width: clamp(0.5, 0.15vw, 0.8); 
-            fill: none; 
-            transition: all 0.3s ease; 
+        .connection-line {
+            stroke: rgba(91,141,238,0.12);
+            stroke-width: clamp(0.5, 0.15vw, 0.8);
+            fill: none;
+            transition: all 0.3s ease;
         }
 
-        .connection-line.active { 
-            stroke: rgba(91,141,238,0.5); 
-            stroke-width: clamp(0.8, 0.2vw, 1.5); 
+        .connection-line.active {
+            stroke: rgba(91,141,238,0.5);
+            stroke-width: clamp(0.8, 0.2vw, 1.5);
         }
 
         /* Background Decoration */
@@ -462,6 +474,191 @@
             body { padding: 5px; }
             .search-container { margin-bottom: 10px; }
             .card-wrapper { max-width: 85vh; }
+        }
+        @media (max-width: 768px) {
+            body {
+                padding: clamp(15px, 4vw, 25px);
+            }
+
+            .search-container {
+                margin-bottom: 20px;
+            }
+
+            .card-wrapper {
+                max-width: 100%;
+                aspect-ratio: unset;
+                min-height: 85vh;
+            }
+
+            .card {
+                flex-direction: column;
+                height: auto;
+                min-height: 85vh;
+            }
+
+            .left-section {
+                width: 100%;
+                padding: 25px 20px;
+                min-height: auto;
+            }
+
+            .logo-inner {
+                width: 60px;
+                height: 60px;
+            }
+
+            .club-name {
+                margin-top: 12px;
+            }
+
+            .club-name-arabic {
+                font-size: 11px;
+                line-height: 1.4;
+            }
+
+            .club-name-english {
+                font-size: 10px;
+            }
+
+            .member-info {
+                margin: 20px 0;
+            }
+
+            .committee-badge {
+                font-size: 10px;
+                padding: 6px 12px;
+                margin-bottom: 10px;
+            }
+
+            .member-name {
+                font-size: 22px;
+                margin-bottom: 8px;
+            }
+
+            .member-id {
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+
+            .role-description {
+                font-size: 12px;
+                line-height: 1.6;
+                margin-bottom: 15px;
+            }
+
+            .status-indicator {
+                font-size: 11px;
+                margin-bottom: 8px;
+            }
+
+            .phase-description {
+                font-size: 10px;
+                margin-left: 0;
+                margin-top: 5px;
+            }
+
+            .footer-text {
+                font-size: 11px;
+                margin-top: 15px;
+            }
+
+            .linkedin-icon {
+                height: 14px;
+            }
+
+            .right-section {
+                width: 100%;
+                min-height: 340px;
+                padding: 30px 15px;
+            }
+
+            .visual-container {
+                padding: 20px 10px;
+            }
+
+            .structure-title {
+                font-size: 10px;
+                margin-bottom: 25px;
+                letter-spacing: 1.5px;
+            }
+
+            .neural-network {
+                gap: 30px;
+                width: 100%;
+                max-width: 100%;
+                padding: 0 20px;
+            }
+
+            /* KEY FIX: Wrapper for each layer */
+            .network-layer {
+                display: grid;
+                grid-template-columns: 20px 1fr;
+                gap: 15px;
+                width: 100%;
+                align-items: center;
+                padding: 0;
+            }
+
+            /* Neuron container - fixed width for alignment */
+            .network-layer .neuron {
+                width: 12px;
+                height: 12px;
+                order: 1;
+                flex-shrink: 0;
+                justify-self: center;
+                margin: 0;
+            }
+
+            .network-layer .neuron.active {
+                width: 16px;
+                height: 16px;
+                /* Perfect center alignment compensation */
+                margin-left: 0;
+                margin-right: 0;
+                position: relative;
+                left: 0px;
+            }
+
+            /* Label takes remaining space */
+            .network-layer .layer-label {
+                position: static;
+                transform: none;
+                margin: 0;
+                font-size: 10px;
+                text-align: left;
+                order: 2;
+                left: auto;
+                top: auto;
+                grid-column: 2;
+            }
+
+            .bg-decoration {
+                width: 250px;
+                height: 250px;
+            }
+
+            .idle-content h2 {
+                font-size: 20px;
+            }
+
+            .idle-content p {
+                font-size: 13px;
+            }
+
+            /* Connection lines */
+            .network-svg {
+                display: block;
+            }
+
+            .connection-line {
+                stroke: rgba(91,141,238,0.15);
+                stroke-width: 1;
+            }
+
+            .connection-line.active {
+                stroke: rgba(91,141,238,0.6);
+                stroke-width: 1.5;
+            }
         }
     </style>
 </head>
@@ -514,8 +711,6 @@
                     <div class="neural-network" id="neuralNetwork">
                         <svg class="network-svg" id="networkSvg"></svg>
                         <div class="network-layer" data-layer="0">
-                            <div class="neuron"></div>
-                            <div class="neuron"></div>
                             <div class="neuron"></div>
                             <span class="layer-label">Executive Board</span>
                         </div>
@@ -621,8 +816,11 @@
         }
 
         function positionLabels() {
-            const baseGap = Math.max(10, Math.min(24, window.innerWidth * 0.03));
-            
+            // Skip on mobile - labels are handled by CSS flexbox
+            if (window.innerWidth <= 768) return;
+
+            const baseGap = Math.max(12, Math.min(18, window.innerWidth * 0.022));
+
             document.querySelectorAll('.network-layer').forEach((layer) => {
                 const neurons = Array.from(layer.querySelectorAll('.neuron'));
                 const label = layer.querySelector('.layer-label');
