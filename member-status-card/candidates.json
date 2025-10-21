@@ -48,15 +48,20 @@
     { "name": "Hanaa Al-Ghamdi", "id": "N-133", "committee": "Development & Innovation" },
     { "name": "Ziyad Al-Qarni", "id": "N-134", "committee": "Media Production" },
     { "name": "Thuraya Al-Youbi", "id": "N-143", "committee": "Activities & Partnerships" },
+    {"name": "Taleen Filimban", "id": "N-145", "committee": "Activities & Partnerships" },
     { "name": "Layan Al-Asmarri", "id": "N-147", "committee": "Development & Innovation" },
     { "name": "Abdullah Aqeel", "id": "N-149", "committee": "Development & Innovation" },
     { "name": "Abdulmohsen Al-Beeshi", "id": "N-150", "committee": "Development & Innovation" },
     { "name": "Meeaad Al-Habeeshi", "id": "N-151", "committee": "Activities & Partnerships" },
     { "name": "Linda Al-Jahdali", "id": "N-153", "committee": "Activities & Partnerships" },
     { "name": "Jamila Al-Yazeedi", "id": "N-154", "committee": "Media Production" },
+    {"name": "Nayrouz Al-Ghrawi", "id": "N-156", "committee": "Development & Innovation" },
     { "name": "Hatem Al-Harbi", "id": "N-157", "committee": "Media Production" },
     { "name": "Reem Al-Mohammadi", "id": "N-166", "committee": "Activities & Partnerships" },
     { "name": "Aser Al-Aseel", "id": "N-167", "committee": "Development & Innovation" },
-    { "name": "Adel Asiri", "id": "N-168", "committee": "Activities & Partnerships" }
+    { "name": "Adel Asiri", "id": "N-168", "committee": "Activities & Partnerships" },
+    { "name": "Ghadi Al-Shehri", "id": "N-169", "committee": "Development & Innovation" },
+    { "name": "Sura Qutbaldeen", "id": "N-170", "committee": "Development & Innovation" }
+    
   ]
 }
