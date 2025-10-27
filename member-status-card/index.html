@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <title>AI Club Committee Member Card</title>
+    <title>AI Club Active Member Card</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
@@ -222,10 +222,10 @@
         .committee-badge {
             display: inline-block; 
             padding: clamp(4px, 1vw, 8px) clamp(10px, 2vw, 16px); 
-            background: rgba(91, 141, 238, 0.2);
-            border: 1px solid rgba(91, 141, 238, 0.4); 
+            background: rgba(76, 201, 240, 0.2);
+            border: 1px solid rgba(76, 201, 240, 0.5); 
             border-radius: clamp(12px, 3vw, 20px); 
-            color: #bdd0f7;
+            color: #4CC9F0;
             font-size: clamp(8px, 1.8vw, 13px); 
             font-weight: 600; 
             margin-bottom: clamp(4px, 1vh, 10px); 
@@ -261,7 +261,7 @@
             display: flex; 
             align-items: center; 
             gap: clamp(5px, 1vw, 8px); 
-            color: #4CC9F0; 
+            color: #5eba6b; 
             font-size: clamp(10px, 2vw, 14px); 
             font-weight: 600; 
             margin-bottom: clamp(4px, 1vh, 8px); 
@@ -270,13 +270,13 @@
         .status-dot {
             width: clamp(5px, 1vw, 8px); 
             height: clamp(5px, 1vw, 8px); 
-            background: #4CC9F0; 
+            background: #5eba6b; 
             border-radius: 50%;
-            animation: connectingPulse 1.5s ease-in-out infinite;
+            animation: activePulse 1.5s ease-in-out infinite;
             box-shadow: 0 0 0 0 rgba(76, 201, 240, 0.7);
         }
 
-        @keyframes connectingPulse {
+        @keyframes activePulse {
             0%   { transform: scale(1);   box-shadow: 0 0 0 0 rgba(76,201,240,0.7); }
             50%  { transform: scale(1.1); box-shadow: 0 0 0 clamp(6px, 1.5vw, 10px) rgba(76,201,240,0); }
             100% { transform: scale(1);   box-shadow: 0 0 0 0 rgba(76,201,240,0); }
@@ -354,7 +354,7 @@
         .neural-network {
             display: flex;
             flex-direction: column;
-            gap: clamp(20px, 4.5vh, 38px);
+            gap: clamp(18px, 4vh, 32px);
             align-items: flex-start;
             position: relative;
             width: 100%;
@@ -407,6 +407,7 @@
             box-shadow: 0 0 clamp(12px, 3vw, 20px) rgba(91,141,238,0.9), 
                         0 0 clamp(20px, 5vw, 35px) rgba(91,141,238,0.5);
             animation: neuronPulse 2s ease-in-out infinite;
+            /* Center compensation when growing */
             margin-left: calc((clamp(6px, 1.5vw, 12px) - clamp(9px, 2vw, 16px)) / 2);
             margin-right: calc((clamp(6px, 1.5vw, 12px) - clamp(9px, 2vw, 16px)) / 2);
         }
@@ -550,12 +551,12 @@
             }
 
             .status-indicator {
-                font-size: 11px;
-                margin-bottom: 8px;
+                font-size: 14px;
+                margin-bottom: 6px;
             }
 
             .phase-description {
-                font-size: 10px;
+                font-size: 12px;
                 margin-left: 0;
                 margin-top: 5px;
             }
@@ -571,7 +572,7 @@
 
             .right-section {
                 width: 100%;
-                min-height: 340px;
+                min-height: 360px;
                 padding: 30px 15px;
             }
 
@@ -586,13 +587,12 @@
             }
 
             .neural-network {
-                gap: 30px;
+                gap: 26px;
                 width: 100%;
                 max-width: 100%;
                 padding: 0 20px;
             }
 
-            /* KEY FIX: Wrapper for each layer */
             .network-layer {
                 display: grid;
                 grid-template-columns: 20px 1fr;
@@ -602,7 +602,6 @@
                 padding: 0;
             }
 
-            /* Neuron container - fixed width for alignment */
             .network-layer .neuron {
                 width: 12px;
                 height: 12px;
@@ -615,14 +614,12 @@
             .network-layer .neuron.active {
                 width: 16px;
                 height: 16px;
-                /* Perfect center alignment compensation */
                 margin-left: 0;
                 margin-right: 0;
                 position: relative;
                 left: 0px;
             }
 
-            /* Label takes remaining space */
             .network-layer .layer-label {
                 position: static;
                 transform: none;
@@ -648,7 +645,6 @@
                 font-size: 13px;
             }
 
-            /* Connection lines */
             .network-svg {
                 display: block;
             }
@@ -695,7 +691,7 @@
                         </div>
                         <div class="status-indicator">
                             <div class="status-dot"></div>
-                            <span id="phaseStatus">Interview Phase</span>
+                            <span id="phaseStatus">Active Node</span>
                         </div>
                         <p class="phase-description" id="phaseDescription"></p>
                     </div>
@@ -729,7 +725,7 @@
                             <div class="neuron"></div>
                             <span class="layer-label">Media Production</span>
                         </div>
-                        <div class="network-layer" data-layer="4">
+                        <div class="network-layer" data-layer="4" data-committee="General Membership">
                             <div class="neuron"></div>
                             <span class="layer-label">Impact Layer</span>
                         </div>
@@ -751,19 +747,27 @@
         let members = [];
 
         const committeeInfo = {
-            'Activities & Partnerships': {
-                description: 'Organize events, build industry partnerships, and create networking opportunities that expand our community reach and impact.',
-                neuronLayer: 1,
-            },
-            'Development & Innovation': {
-                description: 'Lead technical projects, develop AI solutions, deliver training programs, and explore emerging technologies through research.',
-                neuronLayer: 2,
-            },
-            'Media Production': {
-                description: "Create visual content, design multimedia materials, and manage the club's digital storytelling across all channels.",
-                neuronLayer: 3,
-            },
-        };
+        'Activities & Partnerships': {
+            description: 'Organizes events, builds industry partnerships, and creates networking opportunities that strengthen the club’s external connections.',
+            neuronLayer: 1,
+            status: 'Connected Node'
+        },
+        'Development & Innovation': {
+            description: 'Leads technical projects, develops AI solutions, delivers training programs, and explores emerging technologies through research and experimentation.',
+            neuronLayer: 2,
+            status: 'Connected Node'
+        },
+        'Media Production': {
+            description: "Designs visual content, produces multimedia materials, and manages the club’s digital identity and storytelling across all platforms.",
+            neuronLayer: 3,
+            status: 'Connected Node'
+        },
+        'General Membership': {
+            description: 'Engages in club initiatives, participates in workshops and events, and contributes to the network’s collective growth and learning.',
+            neuronLayer: 4,
+            status: 'Active Node'
+        }
+    };
 
         async function loadCandidates() {
             try {
@@ -777,6 +781,7 @@
                     committee: candidate.committee,
                     description: committeeInfo[candidate.committee].description,
                     neuronLayer: committeeInfo[candidate.committee].neuronLayer,
+                    status: committeeInfo[candidate.committee].status
                 }));
 
                 layout();
@@ -854,13 +859,15 @@
             const phaseStatus = document.getElementById('phaseStatus');
             const phaseDescription = document.getElementById('phaseDescription');
 
-            if (['Activities & Partnerships', 'Development & Innovation'].includes(member.committee)) {
-                phaseStatus.textContent = 'Interview Phase';
-                phaseDescription.textContent = 'You are invited to participate in our interview process where we will discuss your interests, skills, and vision for contributing to the AI Club.';
-            } else if (member.committee === 'Media Production') {
-                phaseStatus.textContent = 'Challenge Phase';
-                phaseDescription.textContent = 'You are required to submit your creative work showcasing your skills within the specified deadline. Please check your email for detailed requirements.';
+            // Set status based on committee
+            phaseStatus.textContent = member.status;
+            
+            if (member.committee === 'General Membership') {
+            phaseDescription.textContent = 'You are an Active Node within the AI Club network — participating, learning, and amplifying the energy that keeps our system growing.';
+            } else {
+                phaseDescription.textContent = 'You are a Connected Node in the club’s neural structure — a vital link powering collaboration, innovation, and collective impact.';
             }
+
 
             allNeurons.forEach((n) => n.classList.remove('active'));
             allLines.forEach((l) => l.classList.remove('active'));
